@@ -39,15 +39,14 @@ public class SucursalDTO {
 
 
 
-    //metode que retorna un string indicant si els paisos estan dins o fora la UE
+    //devuelve si el pais es de la UE  o fueraUE
     public String verificacionUE (String pais){
-        int size = paisesUE.size();
-        for (int i =0; i<size;i++){
-            if(pais.equalsIgnoreCase(paisesUE.get(i))){
+        for(String paises : paisesUE) {
+            if(pais.equalsIgnoreCase(paises)){
                 return "UE";
             }
         }
-    return "fueraUE";
+        return "fueraUE";
     }
 
 

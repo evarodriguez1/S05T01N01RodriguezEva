@@ -11,5 +11,4 @@ import org.springframework.stereotype.Repository;
 public interface SucursalRepository extends JpaRepository<Sucursal,Long> {
 
 
-
 }

@@ -26,15 +26,25 @@ public class SucursalController {
     Sucursal sucursal = new Sucursal
             (sucursalDto.getNombreSucursal(),sucursalDto.getPaisSucursal(),sucursalDto.verificacionUE(sucursalDto.getPaisSucursal())) ;
 
+    //rearmar esta linea como
     return ResponseEntity.status(HttpStatus.CREATED).body(sucursalService.agregarSucursal(sucursal));
     }
 
+    @GetMapping("/sucursal/{id}")
+    public Sucursal getSucursal (@PathVariable Long id) throws Exception {
+        return sucursalService.getSucursal(id);
+    }
+
+    @GetMapping("/todasSucursales")
+    public List<Sucursal> getAllSucursal (){
+        return sucursalService.getAllSucursal();
+    }
 
     @PutMapping ("/actualizar/{id}")
     public String actualizarSucursal(@PathVariable Long id,@RequestBody SucursalDTO sucursalDto) throws Exception {
-        String mensaje ="";
+
         if(!sucursalService.findById(id)){
-            mensaje = "No se encuentra la sucursal con id: "+id;
+            return  "No se encuentra la sucursal con id: "+id;
         }else {
             Sucursal sucursalNew = sucursalService.getSucursal(id);
             if (sucursalDto.getNombreSucursal() != null) {
@@ -45,34 +55,20 @@ public class SucursalController {
                 sucursalNew.setTipoSucursal(sucursalDto.verificacionUE(sucursalDto.getPaisSucursal()));
             }
             sucursalService.actualizarSucursal(sucursalNew);
-            mensaje="Sucursal actualizada";
         }
-        return mensaje;
+        return "Sucursal actualizada";
     }
-
 
     @DeleteMapping("/eliminar/{id}")
     public String eliminarSucursal (@PathVariable Long id){
-    String mensaje ="";
         if(!sucursalService.findById(id)){
-            mensaje = "No se encuentra la sucursal con id: "+id;
-       }else{
+            return "No se encuentra la sucursal con id: "+id;
+        }else{
             sucursalService.eliminarSucursal(id);
-            mensaje= "la sucursal con id "+id+" se ha eliminado";
         }
-    return mensaje;
+        return "la sucursal con id "+id+" se ha eliminado";
     }
 
 
-    @GetMapping("/sucursal/{id}")
-    public Sucursal getSucursal (@PathVariable Long id) throws Exception {
-        return sucursalService.getSucursal(id);
-    }
 
-
-    @GetMapping("/todasSucursales")
-    public List<Sucursal> getAllSucursal (){
-
-        return sucursalService.getAllSucursal();
-    }
 }

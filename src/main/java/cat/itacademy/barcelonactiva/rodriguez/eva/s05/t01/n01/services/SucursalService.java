@@ -1,5 +1,6 @@
 package cat.itacademy.barcelonactiva.rodriguez.eva.s05.t01.n01.services;
 
+import cat.itacademy.barcelonactiva.rodriguez.eva.s05.t01.n01.DTO.SucursalDTO;
 import cat.itacademy.barcelonactiva.rodriguez.eva.s05.t01.n01.model.Sucursal;
 import cat.itacademy.barcelonactiva.rodriguez.eva.s05.t01.n01.repository.SucursalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,14 +32,13 @@ public class SucursalService {
         sucursalRepository.deleteById(id);
     }
 
-
     public Sucursal getSucursal (Long id) throws Exception {
-        Optional<Sucursal> optionalSucursal =sucursalRepository.findById(id);
+        Optional<Sucursal> optionalSucursal = sucursalRepository.findById(id);
         return optionalSucursal.orElseThrow(() -> new Exception("No se encuentra la sucursal con id: " + id));
     }
 
     public List<Sucursal> getAllSucursal (){
-        return (List<Sucursal>) sucursalRepository.findAll();
+        return sucursalRepository.findAll();
     }
 
     public boolean findById(Long id){
