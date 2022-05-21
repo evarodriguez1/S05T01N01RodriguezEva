@@ -23,16 +23,15 @@ public class SucursalController {
 
     @PostMapping("/agregar")
     public ResponseEntity<?> agregarSucursal(@RequestBody SucursalDTO sucursalDto){
-    Sucursal sucursal = new Sucursal
-            (sucursalDto.getNombreSucursal(),sucursalDto.getPaisSucursal(),sucursalDto.verificacionUE(sucursalDto.getPaisSucursal())) ;
 
-    //rearmar esta linea como
-    return ResponseEntity.status(HttpStatus.CREATED).body(sucursalService.agregarSucursal(sucursal));
+    return ResponseEntity.status(HttpStatus.CREATED).body(sucursalService.agregarSucursal(sucursalDto));
     }
 
     @GetMapping("/sucursal/{id}")
-    public Sucursal getSucursal (@PathVariable Long id) throws Exception {
-        return sucursalService.getSucursal(id);
+    public ResponseEntity<?> getSucursal (@PathVariable Long id) throws Exception {
+
+        return ResponseEntity.status(HttpStatus.OK).body(sucursalService.getSucursal(id));
+
     }
 
     @GetMapping("/todasSucursales")

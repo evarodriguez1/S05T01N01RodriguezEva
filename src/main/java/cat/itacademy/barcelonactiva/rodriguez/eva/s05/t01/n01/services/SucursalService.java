@@ -19,7 +19,9 @@ public class SucursalService {
     private SucursalRepository sucursalRepository;
 
 
-    public Sucursal agregarSucursal(Sucursal sucursal){
+    public Sucursal agregarSucursal(SucursalDTO sucursalDto){
+        Sucursal sucursal = new Sucursal
+                (sucursalDto.getNombreSucursal(),sucursalDto.getPaisSucursal(),sucursalDto.verificacionUE(sucursalDto.getPaisSucursal())) ;
         sucursalRepository.save(sucursal);
         return sucursal;
     }

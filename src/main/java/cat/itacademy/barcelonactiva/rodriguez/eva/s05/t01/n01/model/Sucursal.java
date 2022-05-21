@@ -15,15 +15,15 @@ public class Sucursal {
     private Long id;
 
     @Getter @Setter
-    @Column (name = "nombre_sucursal")
+    @Column (name = "nombre")
     private String nombreSucursal;
 
     @Getter @Setter
-    @Column (name = "pais_sucursal")
+    @Column (name = "pais")
     private String paisSucursal;
 
     @Getter @Setter
-    @Column (name = "tipo_sucursal")
+    @Column (name = "tipoSucursal")
     private String tipoSucursal;
 
     public Sucursal (){
